@@ -1,9 +1,15 @@
-export default function destructor(obj) {
-  const { special } = obj;
-  for (const i of special) {
-    if (!('description' in i)) {
-      i.description = 'Описание недоступно';
-    }
-  }
-  return special;
+export default function destructor({ special }) {
+  const result = [];
+
+  special.forEach(({
+    name, id, icon, description = 'Описание недоступно',
+  }) => {
+    result.push({
+      name,
+      id,
+      icon,
+      description,
+    });
+  });
+  return result;
 }
